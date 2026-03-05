@@ -1,16 +1,16 @@
 import pandas as pd
 import numpy as np
+import os
 import matplotlib.pyplot as plt
 import warnings
-from google.colab import drive
 
 # Initial Setup
 warnings.filterwarnings("ignore")
-drive.mount('/content/drive')
+current_dir = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(current_dir, '..', 'data', 'ML_Project_Raw_Dataset.csv')
 
 # Load Data
-df = pd.read_csv("/content/drive/MyDrive/ML Project/ML Project Raw Dataset.csv", 
-                 encoding='latin1', low_memory=False)
+df = pd.read_csv(data_path, encoding='latin1', low_memory=False)
 
 # Column Selection and Initial Drop
 useful_columns = [
