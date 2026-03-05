@@ -1,0 +1,7 @@
+pandas
+numpy
+matplotlib
+os
+scikit-learn
+xgboost
+category_encoders
