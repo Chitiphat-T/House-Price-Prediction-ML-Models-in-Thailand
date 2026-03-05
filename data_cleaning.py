@@ -3,14 +3,30 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import warnings
+import gdown
 
 # Initial Setup
 warnings.filterwarnings("ignore")
-current_dir = os.path.dirname(os.path.abspath(__file__))
-data_path = os.path.join(current_dir, '..', 'data', 'ML_Project_Raw_Dataset.csv')
+
+file_id = '1C0dxQBvT92qE1dVLtnhtbzvM4JHu3sF6' 
+url = f'https://drive.google.com/uc?id={file_id}'
+output_folder = 'data'
+output_file = os.path.join(output_folder, 'ML_Project_Raw_Dataset.csv')
+
+# Create data directory if it doesn't exist
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
+# Download the file if it's not already there
+if not os.path.isfile(output_file):
+    print("Fetching dataset from Google Drive...")
+    gdown.download(url, output_file, quiet=False)
+else:
+    print("Dataset already present in /data folder.")
 
 # Load Data
-df = pd.read_csv(data_path, encoding='latin1', low_memory=False)
+df = pd.read_csv(output_file, encoding='latin1', low_memory=False)
+print(f"Successfully loaded {len(df)} rows.")
 
 # Column Selection and Initial Drop
 useful_columns = [
